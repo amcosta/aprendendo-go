@@ -1,14 +1,11 @@
 package dojotempconverter
 
-import (
-	"fmt"
-)
-
-func ConvertToF(temp float64) string {
+func ConvertCToF(temp float64) string {
 	result := 1.8*temp + 32
-	return fmt.Sprintf("%.2f", result)
+	return FormatFahrenheit(result)
 }
 
-func ConvertToK(temp float64) string {
-	return "1"
+func ConvertCToK(temp float64) string {
+	result := temp + 273.15
+	return FormatKelvin(result)
 }

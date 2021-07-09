@@ -80,7 +80,7 @@ Converter de Kelvin para Celsius usando a formúla: **K = C + 273.15**
 Exemplo: Convertendo 250K para Celsius
 > 250 = C + 273.15  
 > C = -250 +273.15  
-> C = -23.15ºC  
+> C = 23.15ºC  
 
 Converter de Kelvin para Fahrenheit usando a formúla: **F = (K − 273,15) * 1.8 + 32**
 

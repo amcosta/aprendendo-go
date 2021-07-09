@@ -2,16 +2,10 @@ package dojotempconverter
 
 import "testing"
 
-func TestConvertToF(t *testing.T) {
-	actual := ConvertToF(37)
-	if actual != "98.60" {
-		t.Errorf("The result %s mismatch with expected 98.6", actual)
-	}
+func TestConvertCToF(t *testing.T) {
+	Assert(ConvertCToF(37), "98.600", t)
 }
 
-func TestConvertToK(t *testing.T) {
-	actual := ConvertToK(37)
-	if actual != "310.15" {
-		t.Errorf("The result %s mismatch with expected 310.15", actual)
-	}
+func TestConvertCToK(t *testing.T) {
+	Assert(ConvertCToK(37), "310.150", t)
 }
