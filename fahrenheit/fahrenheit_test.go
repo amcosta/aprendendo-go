@@ -9,9 +9,9 @@ func assert(actual string, expected string, t *testing.T) {
 }
 
 func TestConvertFToC(t *testing.T) {
-	assert(ConvertFToC(95), "35.000", t)
+	assert(ConvertToC(95), "35.000", t)
 }
 
 func TestConvertFToK(t *testing.T) {
-	assert(ConvertFToK(59), "288.150", t)
+	assert(ConvertToK(59), "288.150", t)
 }
