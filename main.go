@@ -7,33 +7,18 @@ import (
 	"dojo-temp-converter/util"
 	"fmt"
 	"os"
-	"strconv"
-	"strings"
 )
 
 func main() {
 	if len(os.Args) != 3 {
-		fmt.Println("Wrong input, please inform <source> <target>")
-	}
-
-	targetTemp := strings.ToUpper(os.Args[2])
-	if targetTemp != "F" && targetTemp != "K" && targetTemp != "C" {
-		fmt.Println("A media de temperatura do segundo argumento esta inválido, os valores são (F, K, C)")
+		fmt.Println("Entrada inválida, por favor informe <unidade-origem> <unidade-destino>")
 		os.Exit(1)
 	}
 
-	arg1 := os.Args[1]
-	originTemp := strings.ToUpper(string(arg1[len(arg1)-1]))
-	sourceTemp, err := strconv.ParseFloat(os.Args[1][:len(os.Args[1])-1], 64)
-	if err != nil {
-		fmt.Println(err)
-		os.Exit(1)
-	}
-
-	if originTemp != "F" && originTemp != "K" && originTemp != "C" {
-		fmt.Println("A media de temperatura do primeiro argumento esta inválido, os valores são (F, K, C)")
-		os.Exit(1)
-	}
+	input := util.Input{Args: os.Args}
+	targetTemp := input.GetTargetUnit()
+	originTemp := input.GetOriginTempUnit()
+	sourceTemp := input.GetSourceTemp()
 
 	switch originTemp {
 	case "C":
@@ -46,10 +31,14 @@ func main() {
 		result := convertToKelvin(sourceTemp, targetTemp)
 		printOutput(result, targetTemp)
 	}
+
+	fmt.Println("Não é possível fazer a conversão de temperaturas")
+	os.Exit(1)
 }
 
 func printOutput(result string, targetTemp string) {
 	fmt.Printf("Resultado: %s%s\n", result, targetTemp)
+	os.Exit(0)
 }
 
 func convertToCelsius(sourceTemp float64, targetTemp string) string {
