@@ -2,6 +2,7 @@ package main
 
 import (
 	"dojo-temp-converter/celsius"
+	"dojo-temp-converter/converter"
 	"dojo-temp-converter/fahrenheit"
 	"dojo-temp-converter/kelvin"
 	"dojo-temp-converter/util"
@@ -41,10 +42,10 @@ func main() {
 	os.Exit(1)
 }
 
-func factory(originUnit string) (util.Converter, error) {
+func factory(originUnit string) (converter.Celsius.Converter, error) {
 	switch originUnit {
 	case "C":
-		return new(celsius.Celsius), nil
+		return new(converter.Celsius), nil
 	case "F":
 		return new(fahrenheit.Fahrenheit), nil
 	case "K":

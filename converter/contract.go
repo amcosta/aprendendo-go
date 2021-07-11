@@ -1,4 +1,4 @@
-package util
+package converter
 
 type Converter interface {
 	ConvertToC(temp float64) string

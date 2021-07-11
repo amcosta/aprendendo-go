@@ -1,4 +1,4 @@
-package kelvin
+package converter
 
 import "dojo-temp-converter/util"
 

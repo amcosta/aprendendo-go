@@ -1,4 +1,4 @@
-package celsius
+package converter
 
 import "dojo-temp-converter/util"
 

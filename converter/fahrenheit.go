@@ -1,4 +1,4 @@
-package fahrenheit
+package converter
 
 import "dojo-temp-converter/util"
 
