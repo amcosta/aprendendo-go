@@ -20,15 +20,20 @@ func main() {
 	originTemp := input.GetOriginTempUnit()
 	sourceTemp := input.GetSourceTemp()
 
-	switch originTemp {
+	converter, err := factory(originTemp)
+	if err != nil {
+		panic(err)
+	}
+
+	switch targetTemp {
 	case "C":
-		result := convertToCelsius(sourceTemp, targetTemp)
+		result := converter.ConvertToC(sourceTemp)
 		printOutput(result, targetTemp)
 	case "F":
-		result := convertToFahrenheit(sourceTemp, targetTemp)
+		result := converter.ConvertToF(sourceTemp)
 		printOutput(result, targetTemp)
 	case "K":
-		result := convertToKelvin(sourceTemp, targetTemp)
+		result := converter.ConvertToK(sourceTemp)
 		printOutput(result, targetTemp)
 	}
 
@@ -36,40 +41,20 @@ func main() {
 	os.Exit(1)
 }
 
+func factory(originUnit string) (util.Converter, error) {
+	switch originUnit {
+	case "C":
+		return new(celsius.Celsius), nil
+	case "F":
+		return new(fahrenheit.Fahrenheit), nil
+	case "K":
+		return new(kelvin.Kelvin), nil
+	default:
+		return nil, fmt.Errorf("nenhum conversor encontrado para o tipo %s", originUnit)
+	}
+}
+
 func printOutput(result string, targetTemp string) {
 	fmt.Printf("Resultado: %s%s\n", result, targetTemp)
 	os.Exit(0)
-}
-
-func convertToCelsius(sourceTemp float64, targetTemp string) string {
-	switch targetTemp {
-	case "F":
-		return celsius.ConvertToF(sourceTemp)
-	case "K":
-		return celsius.ConvertToK(sourceTemp)
-	default:
-		return util.FormatCelsius(sourceTemp)
-	}
-}
-
-func convertToFahrenheit(sourceTemp float64, targetTemp string) string {
-	switch targetTemp {
-	case "C":
-		return fahrenheit.ConvertToC(sourceTemp)
-	case "K":
-		return fahrenheit.ConvertToK(sourceTemp)
-	default:
-		return util.FormatFahrenheit(sourceTemp)
-	}
-}
-
-func convertToKelvin(sourceTemp float64, targetTemp string) string {
-	switch targetTemp {
-	case "C":
-		return kelvin.ConvertToC(sourceTemp)
-	case "F":
-		return kelvin.ConvertToF(sourceTemp)
-	default:
-		return util.FormatKelvin(sourceTemp)
-	}
 }

@@ -1,6 +1,15 @@
 package celsius
 
-import "testing"
+import (
+	"dojo-temp-converter/util"
+	"testing"
+)
+
+var converter util.Converter
+
+func init() {
+	converter = new(Celsius)
+}
 
 func assert(actual string, expected string, t *testing.T) {
 	if actual != expected {
@@ -9,9 +18,9 @@ func assert(actual string, expected string, t *testing.T) {
 }
 
 func TestConvertCToF(t *testing.T) {
-	assert(ConvertToF(37), "98.600", t)
+	assert(converter.ConvertToF(37), "98.600", t)
 }
 
 func TestConvertCToK(t *testing.T) {
-	assert(ConvertToK(37), "310.150", t)
+	assert(converter.ConvertToK(37), "310.150", t)
 }

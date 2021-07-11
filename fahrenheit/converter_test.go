@@ -1,6 +1,15 @@
 package fahrenheit
 
-import "testing"
+import (
+	"dojo-temp-converter/util"
+	"testing"
+)
+
+var converter util.Converter
+
+func init() {
+	converter = new(Fahrenheit)
+}
 
 func assert(actual string, expected string, t *testing.T) {
 	if actual != expected {
@@ -9,9 +18,9 @@ func assert(actual string, expected string, t *testing.T) {
 }
 
 func TestConvertFToC(t *testing.T) {
-	assert(ConvertToC(95), "35.000", t)
+	assert(converter.ConvertToC(95), "35.000", t)
 }
 
 func TestConvertFToK(t *testing.T) {
-	assert(ConvertToK(59), "288.150", t)
+	assert(converter.ConvertToK(59), "288.150", t)
 }
