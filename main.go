@@ -1,10 +1,7 @@
 package main
 
 import (
-	"dojo-temp-converter/celsius"
 	"dojo-temp-converter/converter"
-	"dojo-temp-converter/fahrenheit"
-	"dojo-temp-converter/kelvin"
 	"dojo-temp-converter/util"
 	"fmt"
 	"os"
@@ -21,7 +18,7 @@ func main() {
 	originTemp := input.GetOriginTempUnit()
 	sourceTemp := input.GetSourceTemp()
 
-	converter, err := factory(originTemp)
+	converter, err := converter.CreateConverter(originTemp)
 	if err != nil {
 		panic(err)
 	}
@@ -40,19 +37,6 @@ func main() {
 
 	fmt.Println("Não é possível fazer a conversão de temperaturas")
 	os.Exit(1)
-}
-
-func factory(originUnit string) (converter.Celsius.Converter, error) {
-	switch originUnit {
-	case "C":
-		return new(converter.Celsius), nil
-	case "F":
-		return new(fahrenheit.Fahrenheit), nil
-	case "K":
-		return new(kelvin.Kelvin), nil
-	default:
-		return nil, fmt.Errorf("nenhum conversor encontrado para o tipo %s", originUnit)
-	}
 }
 
 func printOutput(result string, targetTemp string) {
