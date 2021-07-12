@@ -14,9 +14,22 @@ func main() {
 	}
 
 	input := util.Input{Args: os.Args}
-	targetTemp := input.GetTargetUnit()
-	originTemp := input.GetOriginTempUnit()
-	sourceTemp := input.GetSourceTemp()
+	targetTemp, err := input.GetTargetUnit()
+	if err != nil {
+		fmt.Println(err)
+		os.Exit(1)
+	}
+
+	originTemp, err := input.GetOriginTempUnit()
+	if err != nil {
+		fmt.Println(err)
+		os.Exit(1)
+	}
+
+	sourceTemp, err := input.GetSourceTemp()
+	if err != nil {
+		panic(err)
+	}
 
 	converter, err := converter.CreateConverter(originTemp)
 	if err != nil {
